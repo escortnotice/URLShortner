@@ -34,18 +34,14 @@ public class RecordClickQueueMessageSenderService {
 		push(clickInfo);
 	}
 
+	//pushing to queue
 	private void push(Click_Info clickInfo) {
-		//rabbitTemplateQueue.convertAndSend(QUEUE_NAME, clickInfo.getUrlInfo().getUrl_id());
-		/*
-		 * Convert the object to json string and then send it to the queue
-		 */
-		//ObjectMapper mapper = new ObjectMapper();
 		try {
+			//convert object to json and then send to queue
 			String clickInfo_json = objectMapper.writeValueAsString(clickInfo);
 			System.out.println("clickInfo in json format in Queue Sender: " + clickInfo_json);
 			rabbitTemplateQueue.convertAndSend(QUEUE_NAME,clickInfo_json);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
