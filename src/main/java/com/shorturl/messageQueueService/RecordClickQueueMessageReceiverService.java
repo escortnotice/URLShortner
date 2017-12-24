@@ -1,7 +1,6 @@
 package com.shorturl.messageQueueService;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 import org.springframework.amqp.core.ExchangeTypes;
 import org.springframework.amqp.rabbit.annotation.Exchange;
@@ -15,7 +14,6 @@ import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shorturl.model.Click_Info;
-import com.shorturl.model.URL_Info;
 import com.shorturl.repository.ClickInfoRepository;
 import com.shorturl.repository.URLInfoRepository;
 
