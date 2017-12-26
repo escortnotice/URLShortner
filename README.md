@@ -16,3 +16,12 @@ http://localhost:8300/url-service/fullUrl?shortUrl= 1070359356
  - RabbitMQ (Point to Point technique used)
  
  
+ Rabbit MQ Details: 
+ 	QueueName : link-queue
+ 	Queue Durability : Durable
+ 	ExchangeName: link-exchange
+ 	Exchange Durability: Durable
+ 	ExchangeType : Topic
+ 	Routing-key : link-routingkey
+ 	
+ 
