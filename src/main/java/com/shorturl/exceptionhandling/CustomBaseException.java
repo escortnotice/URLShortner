@@ -1,11 +1,14 @@
 package com.shorturl.exceptionhandling;
 
+@SuppressWarnings("serial")
 public class CustomBaseException extends Exception {
 
-	private static final long serialVersionUID = 1L;
-
-	public CustomBaseException(String customMessage, Throwable e) {
-		super(customMessage, e);
+	public CustomBaseException(String customMessage) {
+		super(customMessage);
 	}
-	
+
+	public CustomBaseException(String customMessage, Throwable cause) {
+		super(customMessage, cause);
+	}
+
 }
