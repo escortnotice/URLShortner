@@ -26,9 +26,11 @@ public class URLInfoService {
 	 * 1. check if the long url exists in db 2. if no entry found then get a short
 	 * url generated 3. save it in the db
 	 */
+	//@Cacheable("shortUrls")
 	public URL_Info checkShortenAndSaveURLInfo(String longUrl) {
 
 		URL_Info urlInfo = getShortUrlForLongUrl(longUrl);
+		//URL_Info urlInfo = urlInfoRepository.findByLongUrl(longUrl);
 		if (urlInfo == null) {
 			String shortUrl = generateShortURL(longUrl);
 			urlInfo = new URL_Info(longUrl, shortUrl, new Timestamp(System.currentTimeMillis()));
@@ -59,7 +61,7 @@ public class URLInfoService {
 		return urlInfoRepository.findAll();
 	}
 
-	// generate a short url as hashcode of the string
+	// generate a short url using the below algorithm
 	private String generateShortURL(String longUrl) {
 		// String shortUrl = Integer.toString(longUrl.trim().hashCode());
 		String shortUrl = Hashing.murmur3_32().hashString(longUrl, StandardCharsets.UTF_8).toString();
@@ -68,13 +70,13 @@ public class URLInfoService {
 
 	// get short url from db for the respective long url
 	@Cacheable("shortUrls")
-	private URL_Info getShortUrlForLongUrl(String longUrl) {
+	public URL_Info getShortUrlForLongUrl(String longUrl) {
 		return urlInfoRepository.findByLongUrl(longUrl);
 	}
 
 	// get long url from db for the respective short url
 	@Cacheable("longUrls")
-	private URL_Info getLongUrlForShortUrl(String shortUrl) {
+	public URL_Info getLongUrlForShortUrl(String shortUrl) {
 		return urlInfoRepository.findByShortUrl(shortUrl);
 	}
 

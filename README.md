@@ -1,3 +1,8 @@
+About the project : This is a simple application where we pass the long url and a short url is generated,
+saved in the database and returned to the requester.
+Next time when the short url is sent in the request, its corresponding long url is returned.
+It also captures how many times the short url was used to get the long url.
+
 1) diagrams made with www.draw.io
 
 
