@@ -1,6 +1,5 @@
 package com.shorturl.controller.test;
 
-import static org.mockito.Matchers.contains;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -10,10 +9,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import org.json.JSONArray;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -72,10 +69,10 @@ public class URLInfoRestControllerTest {
 
 	@Test
 	public void getAllUrlsTest_True() throws Exception {
-		//mock return data
+		//setup Action return data
 		mockUrlInfoList.add(mockUrlInfo);
 		
-		//moc service call
+		//mock service call done from Action
 		when(urlInfoService.getAllUrls()).thenReturn(mockUrlInfoList);
 		
 		//Action to be tested
