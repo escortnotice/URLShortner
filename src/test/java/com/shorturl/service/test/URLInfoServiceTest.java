@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -32,16 +32,12 @@ public class URLInfoServiceTest {
 	private static final URL_Info urlInfo = new URL_Info(longUrl, shortUrl, new Timestamp(1234l));
 	private static final ArrayList<URL_Info> urlList = new ArrayList<>(Arrays.asList(urlInfo));
 
+	@InjectMocks
 	URLInfoService urlInfoService;
 	@Mock
 	URLInfoRepository urlInfoRepository;
 	@Mock
 	RecordClickQueueMessageSenderService recordClickQueueMessageSenderService;
-
-	@Before
-	public void setup() {
-		urlInfoService = new URLInfoService(urlInfoRepository, recordClickQueueMessageSenderService);
-	}
 
 	@Test
 	public void checkShortenAndSaveURLInfo_Test_whenLongUrlNotExistInDB() {

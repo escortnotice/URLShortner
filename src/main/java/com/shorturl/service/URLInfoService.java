@@ -21,13 +21,7 @@ public class URLInfoService {
 	@Autowired
 	private RecordClickQueueMessageSenderService recordClickQueueService;
 
-	// constructors
-	public URLInfoService(URLInfoRepository urlInfoRepository,
-			RecordClickQueueMessageSenderService recordClickQueueService) {
-		this.urlInfoRepository = urlInfoRepository;
-		this.recordClickQueueService = recordClickQueueService;
-	}
-
+	
 	/*
 	 * 1. check if the long url exists in db 2. if no entry found then get a short
 	 * url generated 3. save it in the db
