@@ -78,5 +78,10 @@ public class URL_Info {
 	}
 
 	
-	
+	@Override
+	public String toString() {
+		return "URL_Info [url_id=" + url_id + ", longUrl=" + longUrl + ", shortUrl=" + shortUrl
+				+ ", short_url_created_ts=" + short_url_created_ts + "]";
+	}
+
 }
