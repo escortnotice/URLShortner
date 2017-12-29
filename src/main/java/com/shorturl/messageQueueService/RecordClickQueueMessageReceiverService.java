@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shorturl.exceptionhandling.CustomBaseException;
 import com.shorturl.model.Click_Info;
 import com.shorturl.repository.ClickInfoRepository;
 
@@ -32,7 +33,7 @@ public class RecordClickQueueMessageReceiverService {
 	public static final String QUEUE_NAME = "link-queue";
 
 	@RabbitListener(bindings = @QueueBinding(value = @Queue(value = QUEUE_NAME, durable = "true"), exchange = @Exchange(value = EXCHANGE, type = ExchangeTypes.TOPIC, durable = "true")))
-	public void receiveMessage(String clickInfo_json) {
+	public void receiveMessage(String clickInfo_json) throws CustomBaseException {
 		System.out.println("Queue Receiver invoked...");
 		if (!clickInfo_json.isEmpty()) {
 			System.out.println("click Info in Json Format in Queue receiver" + clickInfo_json);
@@ -45,7 +46,7 @@ public class RecordClickQueueMessageReceiverService {
 			} catch (JsonMappingException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
-				e.printStackTrace();
+				throw new CustomBaseException("Exception occured while pushing data to Queue", e);
 			}
 			
 			clickInfoRepository.save(clickInfo);

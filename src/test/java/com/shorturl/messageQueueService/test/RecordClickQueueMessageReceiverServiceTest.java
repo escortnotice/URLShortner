@@ -2,9 +2,11 @@ package com.shorturl.messageQueueService.test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.io.IOException;
 import java.lang.reflect.Method;
 import java.sql.Timestamp;
 
@@ -17,6 +19,7 @@ import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shorturl.exceptionhandling.CustomBaseException;
 import com.shorturl.messageQueueService.RecordClickQueueMessageReceiverService;
 import com.shorturl.model.Click_Info;
 import com.shorturl.model.URL_Info;
@@ -69,5 +72,22 @@ public class RecordClickQueueMessageReceiverServiceTest {
 		//verify if the db method was called
 		verify(clickInfoRepository).save(any(Click_Info.class));
 	}
-
+	
+	
+	//Test Exception
+	@Test(expected=CustomBaseException.class)
+	public void receiveMessage_Test_IOException() throws Exception{
+		//mock objects
+		ObjectMapper objectMapper_mock = mock(ObjectMapper.class);
+		this.recordClickQueueMessageReceiverService = new RecordClickQueueMessageReceiverService(clickInfoRepository, objectMapper_mock);
+		
+		String clickInfo_json = new ObjectMapper().writeValueAsString(clickInfo);
+		
+		//when
+		when(objectMapper_mock.readValue(clickInfo_json,Click_Info.class)).thenThrow(new IOException());
+		
+		//action to be tested
+		recordClickQueueMessageReceiverService.receiveMessage(clickInfo_json);
+			
+	}
 }
