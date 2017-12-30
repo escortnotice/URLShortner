@@ -29,4 +29,18 @@ http://localhost:8300/url-service/fullUrl?shortUrl= 1070359356
  	ExchangeType : Topic
  	Routing-key : link-routingkey
  	
+ 	
+ 4) Added content negotiation feature (to produce both xml and json responses)
+ Url: http://localhost:8300/url-service/shorten?longUrl=www.sify.com
+ Header: Accept:application/json
+ 
+ Url: http://localhost:8300/url-service/shorten?longUrl=www.sify.com
+ Header: Accept:application/xml
+ 
+ Url: http://localhost:8300/url-service/shorten.xml?longUrl=www.sify.com
+ 
+ Url: http://localhost:8300/url-service/shorten.json?longUrl=www.sify.com
+ 
+ 
+ 	
  

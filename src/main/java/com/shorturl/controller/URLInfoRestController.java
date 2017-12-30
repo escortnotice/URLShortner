@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.shorturl.model.URL_Info;
 import com.shorturl.service.URLInfoService;
 
+
 @RestController
 @RequestMapping("/url-service")
 public class URLInfoRestController {
@@ -21,7 +22,7 @@ public class URLInfoRestController {
 	URLInfoService urlInfoService;
 
 	//shorten the long url
-	@GetMapping("/shorten")
+	@GetMapping(path = "/shorten", produces= {"application/json","application/xml"})
 	@ResponseStatus(code=HttpStatus.CREATED)
 	public URL_Info checkShortenAndSaveURLInfo(@RequestParam("longUrl") String long_Url) {
 		return urlInfoService.checkShortenAndSaveURLInfo(long_Url.trim());
