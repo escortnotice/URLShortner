@@ -30,7 +30,7 @@ http://localhost:8300/url-service/fullUrl?shortUrl= 1070359356
  	Routing-key : link-routingkey
  	
  	
- 4) Added content negotiation feature (to produce both xml and json responses)
+ 4) Added content negotiation feature (to produce both xml and json responses).Default is json
  Url: http://localhost:8300/url-service/shorten?longUrl=www.sify.com
  Header: Accept:application/json
  
