@@ -41,6 +41,7 @@ http://localhost:8300/url-service/fullUrl?shortUrl= 1070359356
  
  Url: http://localhost:8300/url-service/shorten.json?longUrl=www.sify.com
  
+ 5) Test Cases (junit, junit + spring, integration) added for all layer and functionality
  
  	
  
